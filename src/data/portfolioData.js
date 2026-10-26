@@ -12,7 +12,7 @@ export const personalInfo = {
   socials: {
     github: "https://github.com/shauryashrma",
     linkedin: "https://linkedin.com/in/shauryashrma", // Update with your exact handle if different
-    email: "damnbrocrazy@gmail.com", // Verified from Re-medi repository contact
+    email: "shauryasharmaofficial12@gmail.com", // Verified from Re-medi repository contact
   },
 };
 
