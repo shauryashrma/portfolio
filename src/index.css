@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-dark: #21243D;
+  --color-brand-coral: #FF6464;
+  --color-brand-coral-hover: #E05353;
+  --color-brand-blue: #00A8CC;
+  --color-brand-navy: #142850;
+  --color-brand-light: #EDF7FA;
+  --color-brand-muted: #8695A4;
+  --color-brand-border: #E0E0E0;
+  --font-heebo: 'Heebo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-heebo);
+  color: var(--color-brand-dark);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #FAFCFD;
+  color: #21243D;
+  overflow-x: hidden;
+}
+
+/* 3D Shadows & Isometric Extrusion matching Figma cover (#00A8CC and #FF6464) */
+.shadow-3d-cyan {
+  box-shadow: 6px 6px 0px 0px #00A8CC;
+}
+
+.shadow-3d-cyan-sm {
+  box-shadow: 4px 4px 0px 0px #00A8CC;
+}
+
+.shadow-3d-cyan-lg {
+  box-shadow: 16px 16px 0px 0px #00A8CC;
+}
+
+.shadow-3d-coral {
+  box-shadow: 6px 6px 0px 0px #FF6464;
+}
+
+.shadow-3d-coral-sm {
+  box-shadow: 4px 4px 0px 0px #FF6464;
+}
+
+.shadow-3d-coral-lg {
+  box-shadow: 14px 14px 0px 0px #FF6464;
+}
+
+.shadow-3d-dark {
+  box-shadow: 4px 4px 0px 0px #21243D;
+}
+
+/* Tactile 3D button */
+.btn-3d {
+  box-shadow: 4px 4px 0px 0px #00A8CC;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-3d:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0px 0px #00A8CC;
+}
+
+.btn-3d:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px 0px #00A8CC;
+}
+
+/* Tactile 3D card */
+.card-3d {
+  box-shadow: 5px 5px 0px 0px #00A8CC;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-3d:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0px 0px #FF6464;
+}
+
+/* Custom focus styles for accessibility */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #FF6464;
+  outline-offset: 3px;
+}
+
+/* 3D Checkered wallpaper transition keyframes */
+@keyframes tilePulse {
+  0% {
+    transform: translateZ(0px) scale(1);
+  }
+  100% {
+    transform: translateZ(16px) scale(1.05);
+  }
+}
+
+@keyframes checkeredSlide {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
