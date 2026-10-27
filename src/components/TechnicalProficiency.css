@@ -1,0 +1,10 @@
+/* TechnicalProficiency — scroll-driven stacked cards */
+.technical-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.technical-section .card {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
