@@ -23,7 +23,17 @@ body {
   padding: 0;
   background-color: #FAFCFD;
   color: #21243D;
-  overflow-x: hidden;
+  /* clip avoids the overflow-x:hidden → overflow-y:auto quirk that breaks position:sticky */
+  overflow-x: clip;
+}
+
+/* Inset outline stays crisp while descendants scroll/transform (border can fade in compositing) */
+@media (min-width: 768px) {
+  .portfolio-frame {
+    outline: 2px solid #21243D;
+    outline-offset: -2px;
+    overflow: visible;
+  }
 }
 
 /* 3D Shadows & Isometric Extrusion matching Figma cover (#00A8CC and #FF6464) */

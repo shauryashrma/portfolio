@@ -1,10 +1,260 @@
-/* TechnicalProficiency — scroll-driven stacked cards */
-.technical-section {
+/* ═══════════════════════════════════════════════════════════════════════
+   Technical Proficiency — Scroll-Driven Stacked Cards
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ─── Section: tall scrollable area ─────────────────────────────────── */
+.tp-section {
   position: relative;
-  overflow: hidden;
+  /* 6 cards × 100vh each + 1 viewport for the final exit = 7× viewport */
+  height: 700vh;
+  min-height: 700vh;
+  background: #EDF7FA;
 }
 
-.technical-section .card {
+/* ─── Sticky viewport ───────────────────────────────────────────────── */
+.tp-sticky {
+  position: sticky;
+  top: var(--tp-nav-offset, 72px);
+  left: 0;
+  width: 100%;
+  height: calc(100vh - var(--tp-nav-offset, 72px));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  z-index: 0;
+  background: transparent;
+}
+
+/* ─── Subtle background pattern ─────────────────────────────────────── */
+.tp-bg-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  background-image:
+    radial-gradient(circle at 20% 30%, #00A8CC22 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, #FF646422 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, #21243D08 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ─── Header ────────────────────────────────────────────────────────── */
+.tp-header {
+  position: absolute;
+  top: clamp(20px, 4vh, 48px);
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 0 24px;
+  z-index: 100;
+}
+
+.tp-title {
+  font-size: clamp(20px, 3vw, 26px);
+  font-weight: 700;
+  color: #21243D;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.tp-subtitle {
+  font-size: clamp(13px, 1.6vw, 15px);
+  color: #8695A4;
+  margin: 6px 0 0;
+}
+
+/* ─── Card stack container ──────────────────────────────────────────── */
+.tp-card-stack {
+  position: relative;
+  width: 88%;
+  max-width: 640px;
+  min-height: 280px;
+  height: clamp(280px, 42vh, 380px);
+  margin-top: 16px;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+/* ─── Individual card ───────────────────────────────────────────────── */
+.tp-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  border: 2px solid #21243D;
+  border-radius: 6px;
+  padding: 28px 32px 32px;
+  box-shadow: 4px 4px 0px #00A8CC;
   will-change: transform, opacity;
+  transform-origin: center center;
   backface-visibility: hidden;
+  transition: none; /* driven by JS, not CSS transitions */
+  pointer-events: auto;
+}
+
+.tp-card--coral {
+  box-shadow: 4px 4px 0px #FF6464;
+}
+
+/* ─── Card number indicator ─────────────────────────────────────────── */
+.tp-card-number {
+  font-size: 12px;
+  font-weight: 600;
+  color: #8695A4;
+  margin-bottom: 12px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+}
+
+.tp-card-number-sep {
+  margin: 0 3px;
+  opacity: 0.4;
+}
+
+.tp-card-number-total {
+  opacity: 0.5;
+}
+
+/* ─── Card title ────────────────────────────────────────────────────── */
+.tp-card-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: clamp(18px, 2.5vw, 22px);
+  font-weight: 700;
+  color: #21243D;
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #00A8CC;
+}
+
+.tp-card-dot {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+/* ─── Skill badges ──────────────────────────────────────────────────── */
+.tp-card-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tp-skill-badge {
+  font-size: 13px;
+  font-weight: 600;
+  color: #21243D;
+  background: #F5F8FA;
+  padding: 7px 14px;
+  border-radius: 4px;
+  border: 1.5px solid #CCD6DF;
+  cursor: default;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.tp-skill-badge:hover {
+  border-color: #FF6464;
+  box-shadow: 2px 2px 0px #FF6464;
+  transform: translateY(-2px);
+}
+
+/* ─── Progress dots ─────────────────────────────────────────────────── */
+.tp-progress-dots {
+  position: absolute;
+  bottom: clamp(16px, 3vh, 36px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 100;
+}
+
+.tp-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #CCD6DF;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tp-dot-active {
+  background: #00A8CC;
+  transform: scale(1.3);
+  box-shadow: 0 0 0 3px rgba(0, 168, 204, 0.2);
+}
+
+.tp-dot-done {
+  background: #21243D;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .tp-section {
+    height: 600vh;
+  }
+
+  .tp-card-stack {
+    width: 94%;
+    max-width: 520px;
+    height: 300px;
+  }
+
+  .tp-card {
+    padding: 24px 24px 28px;
+  }
+
+  .tp-card-skills {
+    gap: 8px;
+  }
+
+  .tp-skill-badge {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .tp-section {
+    height: 550vh;
+  }
+
+  .tp-card-stack {
+    width: 90%;
+    max-width: 100%;
+    height: 280px;
+    margin-top: 8px;
+  }
+
+  .tp-card {
+    padding: 20px 18px 24px;
+  }
+
+  .tp-card-title {
+    font-size: 16px;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+  }
+
+  .tp-skill-badge {
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+
+  .tp-progress-dots {
+    gap: 8px;
+  }
+
+  .tp-dot {
+    width: 8px;
+    height: 8px;
+  }
 }
