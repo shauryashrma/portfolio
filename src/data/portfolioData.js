@@ -1,7 +1,7 @@
 export const personalInfo = {
   name: "Shaurya Sharma",
   role: "Software Developer",
-  positioning: "I build practical software experiences at the intersection of full-stack development, AI/ML, and high-performance problem solving.",
+  positioning: " I’m a creative full-stack developer specialising in AI integration, interactive web experiences, and intelligent digital solutions. I combine modern frontend design with robust backend engineering to build products that are not just visually compelling, but genuinely useful. From AI-powered applications to seamless user experiences, I enjoy turning ambitious ideas into functional, scalable products.",
   education: {
     degree: "B.Tech in Information Technology",
     institution: "Bhagwan Parshuram Institute of Technology, Delhi",
@@ -11,7 +11,7 @@ export const personalInfo = {
   resumeUrl: "/resume.pdf", // Drop your resume here in public/resume.pdf
   socials: {
     github: "https://github.com/shauryashrma",
-    linkedin: "https://linkedin.com/in/shauryashrma", // Update with your exact handle if different
+    linkedin: "www.linkedin.com/in/shaurya-sharma-b65788229", // Update with your exact handle if different
     email: "shauryasharmaofficial12@gmail.com", // Verified from Re-medi repository contact
   },
 };
